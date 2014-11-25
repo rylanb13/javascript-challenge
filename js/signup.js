@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 var updateOccupation = function() {
     var optionForm = document.getElementById('signup').elements['occupationOther'];
-    if(this.options[this.selectedIndex].value == 'other') {
+    if (this.options[this.selectedIndex].value == 'other') {
         optionForm.style.display = 'block';
-    }
-    else
+    } else {
         optionForm.style.display = 'none';
+    }
 }
 
 var populateStates = function(formElements) {
@@ -32,15 +32,15 @@ var populateStates = function(formElements) {
 }
 
 var redirect = function() {
-    if(confirm('Do you really want to leave?'))
+    if(confirm('Do you really want to leave?')) {
         location = ('https://www.google.com');
+    }
 }
 
 function onSubmit(evt) {
     try {
         evt.returnValue = validate(this);
-    }
-    catch (exception) {
+    } catch (exception) {
         alert(exception);
     }
 
@@ -75,17 +75,17 @@ function validateField(field) {
         var zipRegExp = new RegExp('^\\d{5}$');
         valid = zipRegExp.test(value);
     }
+
     if(field.name === 'birthdate') {
         var dob = field.value;
         var age = moment().diff(dob, 'years');
         valid = age >= 13;
     }
+
     if(valid) {
         field.className = 'form-control';
-    }
-    else {
+    } else {
         field.className = 'form-control invalid-field';
     }
-
     return valid;
 }
